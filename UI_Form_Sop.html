@@ -1,0 +1,160 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Generate Your SOP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: linear-gradient(135deg, #89CFF0 0%, #4682B4 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    form {
+      background: #ffffffee;
+      padding: 48px;
+      border-radius: 25px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+      width: 100%;
+      max-width: 750px;
+      backdrop-filter: blur(6px);
+      box-sizing: border-box;
+    }
+    h2 {
+      text-align: center;
+      color: #003366;
+      margin-bottom: 30px;
+      font-size: 32px;
+    }
+    label {
+      display: block;
+      margin: 20px 0 10px;
+      font-weight: 500;
+      color: #222;
+    }
+    input[type="text"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid #bbb;
+      transition: all 0.3s ease;
+      background-color: #e6f0fa;
+      box-sizing: border-box;
+    }
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #00509e;
+      background-color: #ffffff;
+      box-shadow: 0 0 8px rgba(0, 80, 158, 0.3);
+      outline: none;
+    }
+    textarea {
+      resize: vertical;
+    }
+    .alert {
+      color: #fff;
+      background-color: #d9534f;
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      display: none;
+    }
+    button {
+      margin-top: 35px;
+      padding: 16px;
+      background: linear-gradient(135deg, #0077be, #003f88);
+      color: white;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 18px;
+      font-weight: 600;
+      transition: transform 0.2s ease, background 0.3s ease;
+    }
+    button:hover {
+      background: linear-gradient(135deg, #003f88, #001f4d);
+      transform: scale(1.02);
+    }
+  </style>
+  <script>
+    function validateForm(event) {
+      const gpa = parseFloat(document.getElementById("gpa").value);
+      const gre = parseInt(document.getElementById("gre").value);
+      const alertBox = document.getElementById("alertBox");
+
+      alertBox.style.display = "none";
+      alertBox.textContent = "";
+
+      if (isNaN(gpa) || gpa < 0 || gpa > 10) {
+        alertBox.textContent = "⚠ GPA must be between 0 and 10.";
+        alertBox.style.display = "block";
+        event.preventDefault();
+        return false;
+      }
+
+      if (isNaN(gre) || gre < 260 || gre > 340) {
+        alertBox.textContent = "⚠ GRE Score must be between 260 and 340.";
+        alertBox.style.display = "block";
+        event.preventDefault();
+        return false;
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <form onsubmit="validateForm(event)">
+    <h2>Generate Your SOP</h2>
+
+    <div id="alertBox" class="alert"></div>
+
+    <label for="university">University Name:</label>
+    <input type="text" id="university" name="university">
+
+    <label for="intake">Preferred Intake:</label>
+    <select id="intake" name="intake">
+      <option value="">Select intake</option>
+      <option value="Fall">Fall</option>
+      <option value="Spring">Spring</option>
+      <option value="Summer">Summer</option>
+      <option value="Winter">Winter</option>
+    </select>
+
+    <label for="course">Course to Apply:</label>
+    <input type="text" id="course" name="course">
+
+    <label for="background">Background:</label>
+    <textarea id="background" name="background" rows="4"></textarea>
+
+    <label for="experience">Experience:</label>
+    <textarea id="experience" name="experience" rows="4"></textarea>
+
+    <label for="goals">Goals:</label>
+    <textarea id="goals" name="goals" rows="4"></textarea>
+
+    <label for="gpa">GPA (out of 4 or 10):</label>
+    <input type="number" step="0.01" id="gpa" name="gpa" min="0" max="10">
+
+    <label for="gre">GRE Score (260 - 340):</label>
+    <input type="number" id="gre" name="gre" min="260" max="340">
+
+    <label for="publications">Publications:</label>
+    <textarea id="publications" name="publications" rows="3"></textarea>
+
+    <label for="faculty">Faculty of Interest:</label>
+    <input type="text" id="faculty" name="faculty">
+
+    <button type="submit">Submit</button>
+  </form>
+
+</body>
+</html>
